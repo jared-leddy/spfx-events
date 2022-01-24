@@ -35,7 +35,23 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
             </div>
           </div>
         </div>
-      </div>`;
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <DragDropFiles 
+      dropEffect="copy" 
+      enable={true}  
+      onDrop={this._getDropFiles}
+      iconName="Upload"
+      labelMessage= "My custom upload File"
+      >
+      Drag and drop here...
+
+      </DragDropFiles>
+      `;
   }
 
   protected get dataVersion(): Version {
