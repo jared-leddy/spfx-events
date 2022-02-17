@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./SpfxCrudPnp.module.scss";
 import { ISpfxCrudPnpProps } from "./ISpfxCrudPnpProps";
 import { escape } from "@microsoft/sp-lodash-subset";
-import { sp } from "@pnp/sp";
+import { spfi, SPFx } from "@pnp/sp";
 import "@pnp/sp/webs";
 import "@pnp/sp/lists";
 import "@pnp/sp/items";
@@ -11,6 +11,7 @@ export default class SpfxCrudPnp extends React.Component<
   ISpfxCrudPnpProps,
   {}
 > {
+
   public render(): React.ReactElement<ISpfxCrudPnpProps> {
     return (
       <div className={styles.spfxCrudPnp}>
@@ -70,6 +71,7 @@ export default class SpfxCrudPnp extends React.Component<
   //Create Item
   private createItem = async () => {
     try {
+      const sp = spfi().using(SPFx(this.props.context));
       const addItem = await sp.web.lists
         .getByTitle("EmployeeDetails")
         .items.add({
@@ -81,17 +83,16 @@ export default class SpfxCrudPnp extends React.Component<
     } catch (e) {
       console.error(e);
     }
-  };
+  }
 
   //Get Item by ID
   private getItemById = async () => {
     try {
-      const id: number = document.getElementById("itemId")["value"];
+      const id: number = parseInt(document.getElementById("itemId")["value"]);
+      const sp = spfi().using(SPFx(this.props.context));
       if (id > 0) {
         const item: any = await sp.web.lists
-          .getByTitle("EmployeeDetails")
-          .items.getById(id)
-          .get();
+          .getByTitle("EmployeeDetails").items.getById(id)();
         document.getElementById("fullName")["value"] = item.Title;
         document.getElementById("age")["value"] = item.Age;
       } else {
@@ -100,14 +101,15 @@ export default class SpfxCrudPnp extends React.Component<
     } catch (e) {
       console.error(e);
     }
-  };
+  }
 
   //Get all items
   private getAllItems = async () => {
     try {
+      const sp = spfi().using(SPFx(this.props.context));
       const items: any[] = await sp.web.lists
         .getByTitle("EmployeeDetails")
-        .items.get();
+        .items();
       console.log(items);
       if (items.length > 0) {
         var html = `<table><tr><th>ID</th><th>Full Name</th><th>Age</th></tr>`;
@@ -122,13 +124,14 @@ export default class SpfxCrudPnp extends React.Component<
     } catch (e) {
       console.error(e);
     }
-  };
+  }
 
   //Update Item
   private updateItem = async () => {
     try {
       const id: number = document.getElementById("itemId")["value"];
       if (id > 0) {
+        const sp = spfi().using(SPFx(this.props.context));
         const itemUpdate = await sp.web.lists
           .getByTitle("EmployeeDetails")
           .items.getById(id)
@@ -144,13 +147,14 @@ export default class SpfxCrudPnp extends React.Component<
     } catch (e) {
       console.error(e);
     }
-  };
+  }
 
   //Delete Item
   private deleteItem = async () => {
     try {
       const id: number = parseInt(document.getElementById("itemId")["value"]);
       if (id > 0) {
+        const sp = spfi().using(SPFx(this.props.context));
         let deleteItem = await sp.web.lists
           .getByTitle("EmployeeDetails")
           .items.getById(id)
@@ -163,5 +167,5 @@ export default class SpfxCrudPnp extends React.Component<
     } catch (e) {
       console.error(e);
     }
-  };
+  }
 }

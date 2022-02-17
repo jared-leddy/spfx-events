@@ -10,26 +10,19 @@ import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 import * as strings from "SpfxCrudPnpWebPartStrings";
 import SpfxCrudPnp from "./components/SpfxCrudPnp";
 import { ISpfxCrudPnpProps } from "./components/ISpfxCrudPnpProps";
-import { sp } from "@pnp/sp/presets/all";
 
 export interface ISpfxCrudPnpWebPartProps {
   description: string;
 }
 
 export default class SpfxCrudPnpWebPart extends BaseClientSideWebPart<ISpfxCrudPnpWebPartProps> {
-  protected onInit(): Promise<void> {
-    return super.onInit().then((_) => {
-      sp.setup({
-        spfxContext: this.context,
-      });
-    });
-  }
 
   public render(): void {
     const element: React.ReactElement<ISpfxCrudPnpProps> = React.createElement(
       SpfxCrudPnp,
       {
         description: this.properties.description,
+        context: this.context
       }
     );
 
