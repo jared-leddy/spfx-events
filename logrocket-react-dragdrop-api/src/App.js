@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+// https://blog.logrocket.com/create-a-drag-and-drop-component-with-react-dropzone/
+
+import React from "react";
+import DropZone from "./dropzone/DropZone";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p className="title">React Drag and Drop Image Upload</p>
+      <div className="content">
+        <DropZone />
+      </div>
     </div>
   );
 }
-
 export default App;
