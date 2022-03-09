@@ -1,0 +1,17 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "voitanos-ext-lesson-4",
+    "libraryId": "3263d45d-3188-4d08-8a80-c6c68a5bb72d",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "voitanos-ext-lesson4",
+    "solutionShortDescription": "voitanos-ext-lesson4 description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "extension",
+    "extensionType": "FieldCustomizer"
+  }
+}
