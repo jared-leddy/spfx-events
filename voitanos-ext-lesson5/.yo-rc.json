@@ -1,0 +1,17 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "voitanos-ext-lesson-5",
+    "libraryId": "741f868a-2338-47f1-80fe-e87b27f4c0c3",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "voitanos-ext-lesson-5",
+    "solutionShortDescription": "voitanos-ext-lesson-5 description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "extension",
+    "extensionType": "ListViewCommandSet"
+  }
+}
