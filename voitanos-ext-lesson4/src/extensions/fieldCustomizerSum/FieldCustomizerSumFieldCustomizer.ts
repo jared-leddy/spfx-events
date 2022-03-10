@@ -37,6 +37,7 @@ export default class FieldCustomizerSumFieldCustomizer extends BaseFieldCustomiz
 
   public onRenderCell(event: IFieldCustomizerCellEventParameters): void {
     const listItem = event.listItem;
+    
     const variableA: number = parseInt(listItem.getValueByName("A")); // column name created as "A"
     const variableB: number = parseInt(listItem.getValueByName("B")); // column name crated as "B"
     console.log(`VariableA: ${variableA}`);
