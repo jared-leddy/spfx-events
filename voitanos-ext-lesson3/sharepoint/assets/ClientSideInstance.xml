@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-    <ClientSideComponentInstance
-        Title="ApolloMission"
-        Location="ClientSideExtension.ApplicationCustomizer"
-        ComponentId="10a738a0-11a4-4ed2-8aa3-3fdcc0de1baa"
-        Properties="{&quot;testMessage&quot;:&quot;Test message&quot;}">
-    </ClientSideComponentInstance>
-</Elements>

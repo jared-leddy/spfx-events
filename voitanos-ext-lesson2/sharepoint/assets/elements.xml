@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-    <CustomAction
-        Title="AzureAppInsightsScript"
-        Location="ClientSideExtension.ApplicationCustomizer"
-        ClientSideComponentId="1b997447-0b05-4490-8fc9-28e1fc2dae5b"
-        ClientSideComponentProperties="{&quot;testMessage&quot;:&quot;Test message&quot;}">
-    </CustomAction>
-</Elements>
