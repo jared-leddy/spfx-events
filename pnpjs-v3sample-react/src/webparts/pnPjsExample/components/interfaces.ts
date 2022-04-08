@@ -5,11 +5,14 @@ export interface IFile {
   Size: number;
   Unit: string;
   Section: string;
-  ApprovalStatus?: string;
-  SSIC?: string;
+  ApprovalStatus: string;
+  SSIC: string;
   FileLeafRef?: string;
   File?: IResponseFile;
   Title?: string;
+  SeriesTitle?: string;
+  FilePlanKey?: string;
+  SeriesDescription?: string;
 }
 
 // create PnP JS response interface for File
@@ -24,9 +27,18 @@ export interface IResponseItem {
   Size: number;
   Unit: string;
   Section: string;
-  ApprovalStatus?: string;
-  SSIC?: string;
+  Approval_Status: string;
+  SSIC: string;
   FileLeafRef?: string;
   File?: IResponseFile;
   Title: string;
+}
+
+export interface FilePlanItemOptions {
+  Id?: number;
+  Unit?: string;
+  FilePlanKey: string;
+  SSIC?: string;
+  SeriesTitle?: string;
+  SeriesDescription?: string;
 }

@@ -4,4 +4,5 @@ export interface IPnPjsExampleProps {
   environmentMessage: string;
   hasTeamsContext: boolean;
   userDisplayName: string;
+  options?: any;
 }

@@ -8,6 +8,14 @@
   &.teams {
     font-family: $ms-font-family-fallbacks;
   }
+  table > 
+  tr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  &:nth-child(2) {
+    margin-top: 20px;
+  }
 }
 
 .welcome {
@@ -30,5 +38,16 @@
       color: "[theme:linkHovered, default: #014446]";
       color: var(--linkHovered); // note: CSS Custom Properties support is limited to modern browsers only
     }
+  }
+}
+.rmSelectContainer {
+  position: relative;
+  .rmSelect {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80% !important;
+
   }
 }

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styles from './PnPjsExample.module.scss';
 import { IPnPjsExampleProps } from './IPnPjsExampleProps';
-
 // import interfaces
 import { IFile, IResponseItem } from "./interfaces";
 
@@ -11,6 +10,8 @@ import { SPFI, spfi } from "@pnp/sp";
 import { Logger, LogLevel } from "@pnp/logging";
 import { IItemUpdateResult } from "@pnp/sp/items";
 import { Label, PrimaryButton } from '@microsoft/office-ui-fabric-react-bundle';
+
+import Selector from './Selector'
 
 export interface IAsyncAwaitPnPJsProps {
   description: string;
@@ -60,16 +61,20 @@ export default class PnPjsExample extends React.Component<IPnPjsExampleProps, II
               <td><strong>Section</strong></td>
               <td><strong>Approval_Status</strong></td>
               <td><strong>SSIC</strong></td>
+              <td><strong>Submit SSIC</strong></td>
             </tr>
             {this.state.items.map((item, idx) => {
               return (
                 <tr key={idx}>
                   <td>{item.Name}</td>
-                  <td>{item.Unit}</td>
+                  <td className='rmUnitValue'>{item.Unit}</td>
                   <td>{item.Section}</td>
                   <td>{item.ApprovalStatus}</td>
-                  <td>{item.SSIC}
-                  {/* <PrimaryButton onClick={this._updateTitles}>Update Item Titles</PrimaryButton> */}
+                  <td className='rmSelectContainer'>
+                      <Selector></Selector>
+                  </td>
+                  <td>
+                  <PrimaryButton onClick={this._updateTitles}>Submit</PrimaryButton>
                   </td>
                 </tr>
               );
@@ -85,13 +90,6 @@ export default class PnPjsExample extends React.Component<IPnPjsExampleProps, II
 
   private _readAllFilesSize = async (): Promise<void> => {
     try {
-      // do PnP JS query, some notes:
-      //   - .expand() method will retrive Item.File item but only Length property
-      //   - .get() always returns a promise
-      //   - await resolves proimises making your code act syncronous, ergo Promise<IResponseItem[]> becomes IResponse[]
-
-      //Extending our sp object to include caching behavior, this modification will add caching to the sp object itself
-      //this._sp.using(Caching("session"));
 
       //Creating a new sp object to include caching behavior. This way our original object is unchanged.
       const spCache = spfi(this._sp).using(Caching({ store: "session" }));
@@ -99,7 +97,7 @@ export default class PnPjsExample extends React.Component<IPnPjsExampleProps, II
       const response: IResponseItem[] = await spCache.web.lists
         .getByTitle(this.LIBRARY_NAME)
         .items
-        .select("Id", "Title", "FileLeafRef", "File/Length", "Unit", "Section", "Approval_Status", "SSIC")
+        .select("ID", "Title", "FileLeafRef", "File/Length", "Unit", "Section", "Approval_Status", "SSIC")
         .expand("File/Length")();
 
       // use map to convert IResponseItem[] into our internal object IFile[]
@@ -110,8 +108,8 @@ export default class PnPjsExample extends React.Component<IPnPjsExampleProps, II
           Size: item.File?.Length || 0,
           Unit: item.Unit,
           Section: item.Section,
-          ApprovalStatus: item.ApprovalStatus,
-          SSIC: item.SSIC
+          ApprovalStatus: item.Approval_Status,
+          SSIC: item.SSIC || 'none'
         };
       });
 
