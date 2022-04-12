@@ -74,7 +74,17 @@ export default class PnPjsExample extends React.Component<IPnPjsExampleProps, II
                       <Selector></Selector>
                   </td>
                   <td>
-                  <PrimaryButton onClick={this._updateTitles}>Submit</PrimaryButton>
+                    <div
+                      style={{
+                        color: 'hsl(0, 0%, 40%)',
+                        display: 'block',
+                        fontSize: 14,
+                        fontStyle: 'italic',
+                        marginTop: '10px',
+                      }}
+                    >
+                      <PrimaryButton onClick={this._updateTitles}>Submit</PrimaryButton>
+                    </div>
                   </td>
                 </tr>
               );

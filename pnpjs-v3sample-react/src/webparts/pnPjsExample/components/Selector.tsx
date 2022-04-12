@@ -26,10 +26,11 @@ export default class Selector extends Component<{}, State> {
     items: [],
     errors: []
   };
-  public componentDidMount(): void {
+  
+  public componentDidMount() {
     // read all file sizes from Documents library
     this._sp = getSP();
-    this._getFilePlanData();
+    this.getFilePlanData();
   }
 
   toggleClearable = () =>
@@ -46,18 +47,8 @@ export default class Selector extends Component<{}, State> {
     const { isClearable, isSearchable } =
       this.state;
 
-
     return (
       <Fragment>
-        <Select
-          className="basic-single rmSSICValue rmSelect"
-          classNamePrefix="select"
-          isClearable={isClearable}
-          isSearchable={isSearchable}
-          name="SSIC"
-          options={this.state.items}
-        />
-
         <div
           style={{
             color: 'hsl(0, 0%, 40%)',
@@ -67,12 +58,21 @@ export default class Selector extends Component<{}, State> {
             marginTop: '10px',
           }}
         >
+        <Select
+          className="basic-single rmSSICValue rmSelect"
+          classNamePrefix="select"
+          isClearable={isClearable}
+          isSearchable={isSearchable}
+          name="SSIC"
+          options={this.state.items}
+        />
+
         </div>
       </Fragment>
     );
   }
 
-  private _getFilePlanData = async (): Promise<void> => {
+  private getFilePlanData = async (): Promise<void> => {
     console.log(`_getFilePlanData: begin`);
     try {
 
@@ -92,18 +92,21 @@ export default class Selector extends Component<{}, State> {
       const items: FilePlanItemOptions[] = response.map((item: FilePlanItemOptions) => {
         console.log(`_getFilePlanData: item ${JSON.stringify(item)}`);
           return {
-            FilePlanKey: `test`
-            // <div>
-            //   <p>
-            //     <span class="rm-key-heading">${item.SSIC}: ${item.SeriesTitle}</span><br>
-            //     <span class="rm-key-body">${item.SeriesDescription}</span>
-            //   </p>
-            // </div>
+            FilePlanKey: `
+              <div>
+                <p>
+                  <span class="rm-key-heading">${item.SSIC}: ${item.SeriesTitle}</span><br>
+                  <span class="rm-key-body">${item.SeriesDescription}</span>
+                </p>
+              </div>
+            `
           };
       });
-      console.log(`_getFilePlanData: items ${items}`);
+      console.log(`_getFilePlanData: items ${JSON.stringify(items)}`);
       // Add the items to the state
       this.setState({ items });
+
+      console.log(`_getFilePlanData: state ${JSON.stringify(this.state.items)}`);
       Promise.resolve();
     } catch (err) {
       Logger.write(`${this.LOG_SOURCE} (_getFilePlanData) - ${JSON.stringify(err)} - `, LogLevel.Error);

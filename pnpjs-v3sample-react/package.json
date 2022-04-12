@@ -5,8 +5,13 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "gulp bundle",
+    "bundle:ship": "gulp bundle --ship",
     "clean": "gulp clean",
-    "test": "gulp test"
+    "test": "gulp test",
+    "package": "gulp package-solution",
+    "package:ship": "gulp package-solution --ship",
+    "start:load": "gulp serve --custom-serve --max_old_space_size=4096 && fast-serve",
+    "start:dev": "gulp serve --nobrowser --custom-serve --max_old_space_size=4096 && fast-serve"
   },
   "dependencies": {
     "@microsoft/sp-core-library": "1.14.0",
@@ -26,10 +31,25 @@
     "@microsoft/sp-build-web": "1.14.0",
     "@microsoft/sp-module-interfaces": "1.14.0",
     "@microsoft/sp-tslint-rules": "1.14.0",
+    "@types/node": "^17.0.13",
     "@types/react": "16.9.51",
     "@types/react-dom": "16.9.8",
     "@types/webpack-env": "1.13.1",
     "ajv": "~5.2.2",
-    "gulp": "~4.0.2"
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-plugin-chai-expect": "^2.2.0",
+    "eslint-plugin-chai-friendly": "^0.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-mocha": "^6.3.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "gulp": "~4.0.2",
+    "prettier": "^1.19.1",
+    "spfx-fast-serve": "^3.0.3",
+    "spfx-fast-serve-helpers": "~1.13.0"
   }
 }

@@ -40,14 +40,3 @@
     }
   }
 }
-.rmSelectContainer {
-  position: relative;
-  .rmSelect {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 80% !important;
-
-  }
-}
